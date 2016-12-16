@@ -1,0 +1,26 @@
+.d3-chart-container{  
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #ffffff 0%, #c6e9ff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #ffffff 0%,#c6e9ff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #ffffff 0%,#c6e9ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c6e9ff',GradientType=1 );
+  border:1px #B7E3FF solid;  
+  width:1000px;
+  max-width:1000px;
+  margin:0 auto;
+  margin-top:10px;
+}
+
+#d3-chart-container rect{
+    fill:steelblue;
+}
+
+.chartToolbar {
+    width:1000px;
+    margin:0 auto;
+    margin-top:10px;
+}
+
+.chartToolbar button:active{
+    color:green;
+}
