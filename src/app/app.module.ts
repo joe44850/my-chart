@@ -11,6 +11,7 @@ import { ChartTestComponent } from './chart-test/chart-test.component';
 import { ChartOptions } from './chart-test/chart-options.service';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { BarChartOptionsService } from './services/bar-chart-options.service';
+import { StudentDataService } from './services/student-data.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,13 @@ import { BarChartOptionsService } from './services/bar-chart-options.service';
     HttpModule,
     routing
   ],
-  providers: [appRoutingProviders, ChartDataService, ChartOptions, BarChartOptionsService],
+  providers: [
+    appRoutingProviders, 
+    ChartDataService, 
+    ChartOptions, 
+    BarChartOptionsService,
+    StudentDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

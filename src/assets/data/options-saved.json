@@ -1,14 +1,28 @@
 {
   "options-saved" : [
     {
-      "name" : "default",
+      "name" : "Default",
       "showXAxis" : false,
-      "showYAxis" : true
+      "showYAxis" : true,
+      "showScores" : false,
+      "showNames" : false,
+      "cssClass" : "bar-chart-default"
     },
     {
       "name" : "My Options",
       "showXAxis" : true,
-      "showYAxis" : false
+      "showYAxis" : false,
+      "showScores" : true,
+      "showNames" : true,
+      "cssClass" : "bar-chart-copper"
+    },
+    {
+      "name" : "Green Options",
+      "showXAxis" : true,
+      "showYAxis" : false,
+      "showScores" : false,
+      "showNames" : true,
+      "cssClass" : "bar-chart-green"
     }
   ]
 }

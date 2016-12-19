@@ -15,7 +15,7 @@ export class BarChartOptionsService {
     this.dataSource = dataSource || this.dataSource;
   }
 
-  getOptions():Observable<any>{
+  getOptions():Observable<Object[]>{
     return this.http.get(this.dataSource)
       .map(response => this.extractData(response));
   }

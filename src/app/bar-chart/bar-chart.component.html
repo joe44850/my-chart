@@ -1,8 +1,28 @@
 <div class="centered-div">
   <h3>Student Progress Over Time</h3>
 
-  <div class="">
-    Loading bar chart...
+  <div [ngClass]="cssClass" #chartcontainer >
+    
   </div>
+
+  <div class="centered-div" id="chart-toolbar">
+    <div>
+      <b>Saved Filter Options</b>
+      <select [(ngModel)]="cssName" (ngModelChange)="updateOptions($event)" #selectCssClass>
+        <option *ngFor="let cssName of cssNames;let i = index" [ngValue]="i">{{cssName}}</option>
+      </select>
+    </div>
+    <div id="chart-filters">
+      <b>Filters</b>
+      <ul>
+        <li><span>Show X Axis </span><span><input type="checkbox" [checked]="selectedOptions.showXAxis" /></span></li>
+        <li><span>Show Y Axis </span><span><input type="checkbox"  [checked]="selectedOptions.showYAxis"  /></span></li>
+        <li><span>Display names </span><span><input type="checkbox"  [checked]="selectedOptions.showNames" /></span></li>
+        <li><span>Display scores </span><span><input type="checkbox"  [checked]="selectedOptions.showScores"  /></span><li>
+      </ul>
+    </div>
+
+  </div>
+  
 </div>
 
