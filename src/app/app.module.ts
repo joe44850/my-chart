@@ -4,18 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { BarchartComponent } from './barchart/barchart.component';
 import { HomeComponent } from './home/home.component';
 import { routing, appRoutingProviders } from './app.routes';
 import { ChartDataService } from './chart-data.service';
 import { ChartTestComponent } from './chart-test/chart-test.component';
+import { ChartOptions } from './chart-test/chart-options.service';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { BarChartOptionsService } from './services/bar-chart-options.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarchartComponent,
+    BarChartComponent,
     HomeComponent,
-    ChartTestComponent
+    ChartTestComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { ChartTestComponent } from './chart-test/chart-test.component';
     HttpModule,
     routing
   ],
-  providers: [appRoutingProviders, ChartDataService],
+  providers: [appRoutingProviders, ChartDataService, ChartOptions, BarChartOptionsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

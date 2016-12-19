@@ -1,0 +1,11 @@
+.centered-div{
+  width:100%;
+  max-width:1000px;
+  margin:0 auto;
+  font-size:.9em;
+  font-family:tahoma;
+}
+
+.centered-div h3{
+  color:#666;
+}

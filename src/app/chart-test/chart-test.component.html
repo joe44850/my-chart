@@ -5,3 +5,15 @@
   <button (click)="updateRotation(2)">Rotation 3</button>
   <button (click)="updateRotation(3)">Rotation 4</button>
 </div>
+
+<div class="options">
+    <fieldset>
+      <legend><span>Options</span></legend>
+      <ul>
+        <li>
+          <input type='checkbox' #optionShowXAxis name="optionShowXAxis" (change)="showXAxis($event);" />
+          <label for="optionShowXAxis">Show xAxis</label>
+        </li>
+      </ul>
+    </fieldset>
+</div>
