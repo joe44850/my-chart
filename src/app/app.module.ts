@@ -6,22 +6,23 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { routing, appRoutingProviders } from './app.routes';
-import { ChartDataService } from './chart-data.service';
+import { ChartDataService } from './services/chart-data.service';
 import { ChartTestComponent } from './chart-test/chart-test.component';
 import { ChartOptions } from './chart-test/chart-options.service';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { BarChartOptionsService } from './services/bar-chart-options.service';
 import { StudentDataService } from './services/student-data.service';
+import { ComponentLibraryModule } from './component-library/component-library.module';
+import { BarchartExampleComponent } from './barchart-example/barchart-example.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BarChartComponent,
     HomeComponent,
     ChartTestComponent,
-    BarChartComponent
+    BarchartExampleComponent    
   ],
   imports: [
+    ComponentLibraryModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,

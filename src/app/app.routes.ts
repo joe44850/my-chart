@@ -2,12 +2,12 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ChartTestComponent } from './chart-test/chart-test.component';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { BarchartExampleComponent } from './barchart-example/barchart-example.component';
 
 const appRoutes: Routes = [
     {   path:'', component: HomeComponent },
     {   path:'chart-test', component: ChartTestComponent},
-    {   path:'bar-chart', component:BarChartComponent},
+    {   path: 'barchart-example', component: BarchartExampleComponent },
     {   path: '**', redirectTo:'' }
 ];
 

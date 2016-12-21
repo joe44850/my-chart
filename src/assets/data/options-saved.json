@@ -6,7 +6,7 @@
       "showYAxis" : true,
       "showScores" : false,
       "showNames" : false,
-      "cssClass" : "bar-chart-default"
+      "cssClass" : "bar-chart-default"      
     },
     {
       "name" : "My Options",

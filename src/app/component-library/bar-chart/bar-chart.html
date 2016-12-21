@@ -1,15 +1,15 @@
 <div class="centered-div">
   <h3>Student Progress Over Time</h3>
 
-  <div [ngClass]="cssClass" #chartcontainer >
+  <div [ngClass]="cssClass" #chartcontainer>
     
   </div>
 
   <div class="centered-div" id="chart-toolbar">
     <div>
       <b>Saved Filter Options</b>
-      <select [(ngModel)]="cssName" (ngModelChange)="updateOptions($event)" #selectCssClass>
-        <option *ngFor="let cssName of cssNames;let i = index" [ngValue]="i">{{cssName}}</option>
+      <select *ngIf="dataOptions" ([ngModel])="cssName" (change)="updateOptions(selectCssClass.value)" #selectCssClass>
+        <option *ngFor="let dataOption of dataOptions;let i = index" value={{i}}>{{dataOption.name}}</option>
       </select>
     </div>
     <div id="chart-filters">

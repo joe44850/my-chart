@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ChartDataService } from '../chart-data.service';
+import { ChartDataService } from '../services/chart-data.service';
 import { ChartTestComponent } from '../chart-test/chart-test.component';
 
 @Component({
