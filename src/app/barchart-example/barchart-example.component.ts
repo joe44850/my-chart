@@ -51,10 +51,11 @@ export class BarchartExampleComponent implements OnInit {
   }
 
   public filterData(rotation: number){
-    
+    var filteredData = [];
     for(let i=0; i<this.mydata.length; i++){      
-      if(this.mydata[i].rotation == rotation){ this.filteredData.push(this.mydata[i]);}
-    }    
+      if(this.mydata[i].rotation == rotation){  filteredData.push(this.mydata[i]);}
+    } 
+    this.filteredData = filteredData;    
   }
 
   

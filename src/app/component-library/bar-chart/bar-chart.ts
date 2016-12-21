@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, NgModule, ModuleWithProviders, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, NgModule, ModuleWithProviders, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { BarChartOptionsService } from '../../services/bar-chart-options.service';
 import { CommonModule }  from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -35,24 +35,29 @@ export class BarChartComponent implements OnChanges {
   private y: any;
   private colors: any;
   private xAxis: any;
-  private yAxis: any;
-  private mydata: any;
+  private yAxis: any;  
   private myIDs:Array<any> = [];
   private element: any;
   private canvas: any;
   private canvasHeight: number;
   private barElement: any;
-  private curRotation = 0;
+  private dataSetIndex = 0;
+  private isFirstChange = true;
 
   constructor() { }  
 
-  ngOnChanges(changes:any) { 
-    if(changes.dataOptions.currentValue!=""){      
-      this.dataOptions = changes.dataOptions.currentValue;       
-      this.updateOptions(0);  
-      this.initBarChart(); 
-      this.measureKey = changes.measureKey.currentValue;
-      this.labelKeys = changes.labelKeys.currentValue;
+  ngOnChanges(changes?:any) {    
+    if(changes["dataOptions"]){ this.dataOptions = changes["dataOptions"].currentValue;}
+    if(changes["measureKey"]){ this.measureKey = changes["measureKey"].currentValue;}
+    if(changes["labelKeys"]){ this.labelKeys = changes["labelKeys"].currentValue;}
+    if(changes["data"]){ this.data = changes["data"].currentValue;}   
+    if(this.isFirstChange){ 
+      this.updateOptions(0);
+      this.initBarChart();
+      this.isFirstChange = false;
+    } 
+    else{
+      this.updateChart();
     }
   }   
 
@@ -64,16 +69,17 @@ export class BarChartComponent implements OnChanges {
     this.cols = data;
   }
 
-  public updateOptions(selectedIndex:number){     
+  public updateOptions(selectedIndex:number){  
+     this.dataSetIndex = selectedIndex;   
      this.selectedOptions = this.dataOptions[selectedIndex];         
      this.cssClass = this.selectedOptions["cssClass"] || '';    
   }  
 
   private initBarChart(){
-    this.mydata = this.data;
+    
     this.barHeight = 25;
     this.element = this.chartContainer.nativeElement;
-    this.canvasHeight = this.barHeight * this.mydata.length;
+    this.canvasHeight = this.barHeight * this.data.length;
     this.initContainer();    
     this.initBars();
     this.appendContainer();
@@ -94,7 +100,7 @@ export class BarChartComponent implements OnChanges {
                .range([0, 1000]);    
     this.barElement = this.canvas
                     .selectAll("g")
-                      .data(this.mydata)
+                      .data(this.data)
                     .enter().append("g")
                       .attr("transform", function(d, i){
                         return "translate(0,"+i*25+")";
@@ -111,6 +117,10 @@ export class BarChartComponent implements OnChanges {
       .text(function(d){ return d["score"]; })
   }
 
+  private appendText(){
+    
+  }
+
   private appendContainer(){
     this.canvas.append("g");
   }
@@ -122,14 +132,13 @@ export class BarChartComponent implements OnChanges {
       .duration(1000)
   }
 
-  public updateChart(){
-    
+  public updateChart(){ 
+    var data = this.data;
     let x = d3.scaleLinear()
                .domain([0, 4])
                .range([0, 1000]);
     
     var bars = this.barElement;
-    var data = this.mydata;
     this.canvas.selectAll("rect")
       .each(function(d, i){
         let newscore = data[i]["score"];
