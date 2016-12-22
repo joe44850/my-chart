@@ -14,6 +14,7 @@ import { StudentDataService } from './services/student-data.service';
 import { ComponentLibraryModule } from './component-library/component-library.module';
 import { BarchartExampleComponent } from './barchart-example/barchart-example.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

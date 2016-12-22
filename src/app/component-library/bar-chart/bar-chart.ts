@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy, NgModule, ModuleWithProviders, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnChanges, NgModule, ModuleWithProviders, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { BarChartOptionsService } from '../../services/bar-chart-options.service';
 import { CommonModule }  from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -15,11 +15,13 @@ export class BarChartComponent implements OnChanges {
   @Input() measureKey;
   @Input() labelKeys: Array<any> = [];
   @Input() data: Array<any> = [];
+  @Input() rowLabel: string;
   @Output() onChange:EventEmitter<any> = new EventEmitter();  
   selectedOptions : Array<any> = [];
   cssClass = "";
   cssNames : Array<any> = [];
   displayOptions :Boolean = false;
+  fullname: string = "Jim";
    
   rows: Array<any> = [];
   cols: Array<any> = [];
@@ -43,6 +45,7 @@ export class BarChartComponent implements OnChanges {
   private barElement: any;
   private dataSetIndex = 0;
   private isFirstChange = true;
+  private measureText;
 
   constructor() { }  
 
@@ -62,11 +65,11 @@ export class BarChartComponent implements OnChanges {
   }   
 
   public setCols(data: Array<any>){
-    this.rows = data;
+    this.cols = data;
   }
 
   public setRows(data: Array<any>){
-    this.cols = data;
+    this.rows = data;
   }
 
   public updateOptions(selectedIndex:number){  
@@ -76,7 +79,6 @@ export class BarChartComponent implements OnChanges {
   }  
 
   private initBarChart(){
-    
     this.barHeight = 25;
     this.element = this.chartContainer.nativeElement;
     this.canvasHeight = this.barHeight * this.data.length;
@@ -84,6 +86,7 @@ export class BarChartComponent implements OnChanges {
     this.initBars();
     this.appendContainer();
     this.animateContainer();
+    this.appendRowLabel();
   }
 
   /* BAR CHART STUFF */
@@ -95,9 +98,7 @@ export class BarChartComponent implements OnChanges {
   }
 
   private initBars(){       
-    let x = d3.scaleLinear()
-               .domain([0, 4])
-               .range([0, 1000]);    
+    let _this = this;
     this.barElement = this.canvas
                     .selectAll("g")
                       .data(this.data)
@@ -106,19 +107,48 @@ export class BarChartComponent implements OnChanges {
                         return "translate(0,"+i*25+")";
                       });
     this.barElement.append("rect")
-      .attr("width", function(d){ return x(d["score"]);})
+      .attr("width", function(d){ return _this.scaleX(d[_this.measureKey]);})
       .attr("fill", "steelblue")
-      .attr("height", this.barHeight - 1);
-
-    this.barElement.append("text")
-      .attr("x", function(d){ return x(d["score"]) + 3;})
-      .attr("y", this.barHeight /2 )
-      .attr("dy", ".35em")
-      .text(function(d){ return d["score"]; })
+      .attr("height", this.barHeight - 1); 
+    this.appendText(); 
   }
 
   private appendText(){
-    
+    var _this = this;
+    var data = this.data;
+    this.measureText = this.barElement.append("text")          
+      .attr("x", function(d, i){ 
+        return _this.scaleX(data[i][_this.measureKey]) + 3;
+      })
+      .attr("y", this.barHeight /2 )
+      .attr("dy", ".35em")      
+      .text(function(d, i){ return data[i][_this.measureKey]; })
+  }
+
+  private updateMeasureLabel(){
+    var _this = this;
+    var data = this.data;
+    this.measureText      
+      .transition()
+      .duration(250)
+      .style("opacity", 0)
+      .attr("x", function(d, i){ 
+        return _this.scaleX(data[i][_this.measureKey]) + 3;
+      })      
+      .transition()
+      .duration(250)
+      .style("opacity", 1)
+      .text(function(d, i){ return data[i][_this.measureKey]; })
+  }
+
+  private appendRowLabel(){
+    var _this = this;
+    var data = this.data;
+    this.barElement.append("text")          
+      .attr("x", 10)
+      .attr("y", this.barHeight /2 )
+      .attr("dy", ".35em")      
+      .text(function(d, i){ return data[i][_this.rowLabel]; })
   }
 
   private appendContainer(){
@@ -132,25 +162,28 @@ export class BarChartComponent implements OnChanges {
       .duration(1000)
   }
 
-  public updateChart(){ 
-    var data = this.data;
+  private scaleX(n){
     let x = d3.scaleLinear()
                .domain([0, 4])
                .range([0, 1000]);
-    
-    var bars = this.barElement;
+    return x(n);
+  }
+
+  public updateChart(){     
+    var _this = this;
+    var data = this.data;
     this.canvas.selectAll("rect")
       .each(function(d, i){
-        let newscore = data[i]["score"];
+        let newscore = data[i][_this.measureKey];
         let self = d3.select(this);
         self.transition()
           .attr("width", function(){
-            return x(newscore);
+            return _this.scaleX(newscore);
           })
           .duration(500)          
         i++;
       });
-      
+    this.updateMeasureLabel();
   }
 
   /* END OF BAR CHART STUFF */

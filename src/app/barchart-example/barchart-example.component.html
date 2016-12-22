@@ -1,5 +1,7 @@
 <div class="centered-div" *ngIf="options && measureKey && labelKeys && filteredData">
-  <bar-chart [dataOptions]="options" [measureKey]="measureKey" [labelKeys]="labelKeys" [data]="filteredData"></bar-chart>
+  <bar-chart [dataOptions]="options" [measureKey]="measureKey" 
+      [labelKeys]="labelKeys" [data]="filteredData" [rowLabel]="rowLabel">
+    </bar-chart>
   <div>
     Select rotation: 
       <select #selectRotation (change)="filterData(selectRotation.value)">
