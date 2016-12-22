@@ -1,0 +1,39 @@
+[
+    {
+        "name" : "Dr. House Students",
+        "dataSource" : "/assets/data/students2.json",
+        "measureField" : "score",
+        "labelField" : "fullname",
+        "fieldFilters" : {
+                "groupBy" : "",
+                "aggregateFunction" : "",
+                "where" : "instructor = 'Dr. House'"
+            }
+        ,
+        "uiOptions" : {
+                "fill" : "purple",
+                "domain" : "[1, 4]",
+                "range" : "[0, 980]",
+                "background" : "#dddddd",
+                "visualization" : "barchart"           
+        }
+    },
+    {
+        "name" : "Dr. Aldous Huxley",
+        "dataSource" : "/assets/data/students2.json",
+        "measureField" : "score",
+        "labelField" : "fullname",
+        "fieldFilters" : {
+                "groupBy" : "",
+                "aggregateFunction" : "",
+                "where" : "instructor = 'Aldous Huxley'"
+        },
+        "uiOptions" : {
+                "fill" : "green",
+                "domain" : "[1, 4]",
+                "range" : "[0, 980]",
+                "background" : "#dddddd",
+                "visualization" : "barchart"           
+        }        
+    }
+]

@@ -13,6 +13,7 @@ import { BarChartOptionsService } from './services/bar-chart-options.service';
 import { StudentDataService } from './services/student-data.service';
 import { ComponentLibraryModule } from './component-library/component-library.module';
 import { BarchartExampleComponent } from './barchart-example/barchart-example.component';
+import { DvExampleComponent } from './dv-example/dv-example.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BarchartExampleComponent } from './barchart-example/barchart-example.co
     AppComponent,
     HomeComponent,
     ChartTestComponent,
-    BarchartExampleComponent    
+    BarchartExampleComponent,
+    DvExampleComponent    
   ],
   imports: [
     ComponentLibraryModule.forRoot(),
