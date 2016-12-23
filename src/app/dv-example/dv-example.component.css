@@ -1,0 +1,31 @@
+.myShow{
+    opacity: 1 !important;
+    transition: opacity 0.25s ease-out !important;
+    -ms-transition: opacity 0.25s ease-out !important;
+    -moz-transition: opacity 0.25s ease-out !important;
+    -webkit-transition: opacity 0.25s ease-out !important;
+}
+
+.fadeout {
+     opacity: 0 !important;
+     transition: opacity 0.25s ease-out !important;
+    -ms-transition: opacity 0.25s ease-out !important;
+    -moz-transition: opacity 0.25s ease-out !important;
+    -webkit-transition: opacity 0.25s ease-out !important;
+}
+
+.myShow input[type="text"]{
+    margin:3px !important;
+    color:#444 !important;
+    border-radius:3px;
+    border:1px solid #bbb;
+    padding:2px;
+}
+
+.fadeout input[type="text"]{
+    margin:3px !important;
+    color:#444 !important;
+    border-radius:3px;
+    border:1px solid #bbb;
+    padding:2px;
+}

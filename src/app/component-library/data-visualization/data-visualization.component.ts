@@ -23,10 +23,15 @@ export class DataVisualizationComponent implements OnInit, IDataVisualizationCon
   constructor() { }
 
   ngOnInit() {
+    console.log("Init: "+this.uiOptions);
   }
 
-  ngOnChanges(change){
-    
+  ngOnChanges(changes?:any){
+    console.log("Changes: "+changes);
+    if(changes["uiOptions"]){ 
+      this.uiOptions = changes["uiOptions"].currentValue;
+      console.log(this.uiOptions);
+    }
   }
 
 } //end class

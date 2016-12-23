@@ -18,6 +18,7 @@ export class DvExampleComponent implements OnInit {
   optionsList: Array<any> = [];
   displayOptions = false;
   dataSource: string = "";
+  showHide: string = "fadeout";
 
   constructor(private http: Http) { }
 
@@ -31,25 +32,31 @@ export class DvExampleComponent implements OnInit {
     );
   } 
 
-  public showOptions(i:number){
-    console.log(i);
+  public showOptions(i:number){    
     if(i<0){
-      this.displayOptions = false;      
+      this.displayOptions = false; 
+      this.showHide = "fadeout";     
     }
     else{
       this.displayOptions = true;
-      this.dataOptions = this.optionsList[i]; 
-      this.getData();     
+      this.dataOptions = this.optionsList[i];  
+      this.uiOptions = this.dataOptions["uiOptions"];       
+      this.getData();                
     }
 
   }
 
   private getData(){    
-    if(this.dataOptions['dataSource'] == this.dataSource){ return;}
+    if(this.dataOptions['dataSource'] == this.dataSource){
+      this.showHide = "myShow"; 
+      return;
+    }
     else{ this.dataSource = this.dataOptions['dataSource'];}
     this.serviceData(this.dataSource).subscribe(
       json => {
         this.data = json;
+        
+        this.showHide = "myShow";      
       }
     );
   }

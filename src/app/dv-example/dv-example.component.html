@@ -5,12 +5,16 @@
     <option *ngFor="let option of optionsList;let i = index;" value="{{i}}">{{option.name}}</option>
   </select>
   <div>&nbsp;</div>
-  <div *ngIf="displayOptions">
-    <span>Measure: <input type="text" #optionMeasure value="{{dataOptions['measureField']}}" /></span>
-    <span>Label Field: <input type="text" value="{{dataOptions['labelField']}}" /></span>
-    <span>Data filters: <input type="text" value="{{dataOptions['fieldFilters']['where']}}" style="width:200px;" /></span>
-    <span>Display: <input type="text" value="{{dataOptions['uiOptions']['visualization']}}" /></span>
-    <span></span>
+  <div>
+    <div  [className]="showHide" style="opacity:0;">
+      <div *ngIf="dataOptions">
+        <span>Measure: <input type="text" #optionMeasure value="{{dataOptions['measureField']}}" /></span>
+        <span>Label Field: <input type="text"  value="{{dataOptions['labelField']}}" /></span>
+        <span>Data filters: <input type="text"  value="{{dataOptions['fieldFilters']['where']}}" style="width:200px;" /></span>
+        <span>Display: <input type="text"  value="{{dataOptions['uiOptions']['visualization']}}" style="width:200px;" /></span>
+        <span>Datasource:<input type="text" value="{{dataOptions['dataSource']}}" style="width:200px;"/></span>
+      </div>
+    </div>
   </div>
   <div>&nbsp;</div>
   <app-data-visualization 
