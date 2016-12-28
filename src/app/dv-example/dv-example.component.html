@@ -12,7 +12,9 @@
         <span>Label Field: <input type="text"  value="{{dataOptions['labelField']}}" /></span>
         <span>Data filters: <input type="text"  value="{{dataOptions['fieldFilters']['where']}}" style="width:200px;" /></span>
         <span>Display: <input type="text"  value="{{dataOptions['uiOptions']['visualization']}}" style="width:200px;" /></span>
-        <span>Datasource:<input type="text" value="{{dataOptions['dataSource']}}" style="width:200px;"/></span>
+        <span>Datasource:<input type="text" value="{{dataOptions['dataSource']}}" style="width:400px;"/></span>
+        <span>Domain:<input type="text" value="{{dataOptions['uiOptions']['domain']}}" style="width:80px;" /></span>
+        <span>Range: <input type="text" value="{{dataOptions['uiOptions']['range']}}"  style="width:80px;" /></span>
       </div>
     </div>
   </div>
@@ -25,6 +27,7 @@
     [data] = "data"    
     [dataOptions] = "dataOptions"
     [uiOptions] = "uiOptions"
+    [dataLoading] = "dataLoading"
   >
   </app-data-visualization>
 </div>

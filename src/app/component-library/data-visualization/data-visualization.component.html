@@ -1,3 +1,4 @@
-<div *ngIf="dataOptions" >
+<div *ngIf="dataOptions" id="dv" #dv>
+  <div id="dv-preloader" #dvpreloader *ngIf="dataLoading">Loading data, please wait...</div>
   <div *ngIf="uiOptions" ></div>
 </div>

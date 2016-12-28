@@ -19,6 +19,7 @@ export class DataVisualizationComponent implements OnInit, IDataVisualizationCon
   @Input() displayFieldOptions: Array<any> = [];
   @Input() dataOptions: Array<any> = [];
   @Input() uiOptions: Array<any> = [];
+  @Input() dataLoading: boolean = false;
 
   constructor() { }
 

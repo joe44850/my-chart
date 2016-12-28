@@ -19,6 +19,7 @@ export class DvExampleComponent implements OnInit {
   displayOptions = false;
   dataSource: string = "";
   showHide: string = "fadeout";
+  dataLoading: Boolean = false;
 
   constructor(private http: Http) { }
 
@@ -54,16 +55,18 @@ export class DvExampleComponent implements OnInit {
     else{ this.dataSource = this.dataOptions['dataSource'];}
     this.serviceData(this.dataSource).subscribe(
       json => {
-        this.data = json;
-        
-        this.showHide = "myShow";      
+        this.dataLoading = true;
+        this.showHide = "myShow"; 
+        setTimeout(()=>{
+          this.data = json;        
+          this.dataLoading = false;
+        },2000);
       }
     );
   }
 
   /* Data retrieval services */
   private serviceData(src):Observable<Object[]>{    
-    
     return this.http.get(src)
     .map(res => this.extractData(res));
   }

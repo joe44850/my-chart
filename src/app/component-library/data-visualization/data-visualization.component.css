@@ -1,0 +1,16 @@
+#dv {
+  position:relative;
+}
+
+#dv-preloader {
+  position:absolute;
+  left:40%;
+  top:45%;
+  background:url(/assets/images/loading.gif) no-repeat center;
+  min-width:32px;
+  min-height:70px;
+  padding-top:0px;
+  color:#555;
+  vertical-align:top;
+  display:table-cell;
+}
